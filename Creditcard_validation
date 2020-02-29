@@ -1,0 +1,70 @@
+import datetime
+import random
+
+while True:
+    cc_no = int(input("Enter your credit card no.:"))           #credit card number validation. 16 digit
+    card_num = str(cc_no)
+    if len(card_num) == 16:
+        print('Credit card length is valid')
+        break
+    print('Invalid credit card length.Try again')
+    
+user_name = input("Enter your name as FN MN LN:").split()       #user name 
+
+date = datetime.datetime.now()                                  #Date validation; Year length = 4; month length = 2
+while True:  
+    yyyy = int(input("Please enter the year on your credit card:"))
+    yy = str(yyyy)
+    if len(yy) == 4:
+        print('the length of year is correct.')
+        break
+    print('the length of year is not correct.Please try again')
+    
+if yyyy < date.year:                                            # Year and month must be more than or equal to current month
+    print('Year is not vaild. Your card is expired.')
+else: 
+    print('Year is valid')
+    
+    while True:
+        mm=int(input("Please enter the month on your credit card:"))
+        if mm>12:
+            print("Invaild month.Please try again")
+        else:
+            if mm < date.month:
+                print('Month is not valid.Your card is expired')
+                flag =0
+                break
+            else:
+                print('Month is valid.')
+                flag = 1
+                break
+if flag == 1:
+    while True:
+           cvv = int(input('Enter your cvv number:'))                   #CVV number validation; CVV lenght = 4
+           cvv1 = str(cvv)
+           if len(cvv1) == 4:
+               print('Vaild cvv')
+               cvv_list = []
+               cvv_list.append(cvv1)
+               break
+           print('invaild cvv.Try again')
+       
+    while True:
+           mob = int(input('Enter your mob number:'))                   #Mob. no. validation; lenght = 10
+           mob1 = str(mob)
+           if len(mob1) == 10:
+               print('Vaild mob no.')
+               mob_list = []
+               mob_list.append(mob1)
+               break
+               
+           print('Invaild mob. no. Please try again')
+       
+    otp = []                                                         #OTP generation
+    a= random.randint(1000,9999)
+    otp.append(a)
+    print('OTP:',a)
+       
+       
+    details = {mob1:{card_num:{cvv:user_name}}}                      #Displaying data in a form of dictionary
+    print(details)
